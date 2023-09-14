@@ -5,7 +5,7 @@ from processor import FrameProcessor
 
 mp_drawing = mp.solutions.drawing_utils
 mp_pose = mp.solutions.pose 
-pose = mp_pose.Pose(min_detection_confidence=0.2, min_tracking_confidence=0.2) 
+pose = mp_pose.Pose(min_detection_confidence=0.2, min_tracking_confidence=0.2, model_complexity=1) 
 sys.argv.append("IMG_4290.MOV")
 cap = cv2.VideoCapture(sys.argv[1])
 if cap.isOpened() == False:
@@ -28,8 +28,11 @@ while cap.isOpened():
         frameProcessor.processImage(image)
     except:
         continue
+
+    # Draw the hand annotations on the image.
     image.flags.writeable = True
     image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)      
+
     out.write(image)
 
 pose.close()

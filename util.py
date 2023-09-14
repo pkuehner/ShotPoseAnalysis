@@ -93,4 +93,4 @@ def get_wrist_right_angle(landmark_list):
     return _get_angle(landmark_list, LANDMARKERID.ELBOW_RIGHT, LANDMARKERID.WRIST_RIGHT, LANDMARKERID.INDEX_FINGER_RIGHT)
 
 def get_wrist_left_angle(landmark_list):
-    return _get_angle(landmark_list, LANDMARKERID.ELBOW_LEFT, LANDMARKERID.WRIST_LEFT, LANDMARKERID.INDEX_FINGER_LEFT)
+    return _get_angle(landmark_list, LANDMARKERID.ELBOW_LEFT, LANDMARKERID.WRIST_LEFT, LANDMARKERID.LEFT_THUMB)
