@@ -23,6 +23,10 @@ class LANDMARKERID(IntEnum):
     KNEE_RIGHT = 26
     ANKLE_LEFT = 27
     ANKLE_RIGHT = 28
+    HEEL_LEFT = 29
+    HEEL_RIGHT = 30
+    FOOT_INDEX_LEFT = 31
+    FOOT_INDEX_RIGHT = 31
 
 
 @dataclass
@@ -42,6 +46,7 @@ class Angle:
 
 @dataclass
 class Frame:
+    number: int
     image: any
     landmarkers: List[Landmarker]
     angles: List[Angle]
