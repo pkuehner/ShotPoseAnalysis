@@ -41,6 +41,10 @@ def find_lowest_knee(
             min_img = image
     print(min_y)
 
+def calculate_distance(
+    pointA: Landmarker, pointB: Landmarker
+):
+    return math.sqrt((pointB.x-pointA.x)**2+(pointB.y-pointA.y)**2)
 
 def get_angle_from_landmarkers(
     point1: Landmarker, point2: Landmarker, point3: Landmarker

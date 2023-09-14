@@ -16,7 +16,8 @@ frame_height = int(cap.get(4))
 outdir, inputflnm = sys.argv[1][:sys.argv[1].rfind('/')+1], sys.argv[1][sys.argv[1].rfind('/')+1:]
 inflnm, inflext = inputflnm.split('.')
 out_filename = f'{outdir}{inflnm}_annotated.{inflext}'
-out = cv2.VideoWriter(out_filename, cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'), 10, (frame_width, frame_height))
+fps = 90
+out = cv2.VideoWriter(out_filename, cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'), fps, (frame_width, frame_height))
 frameProcessor = FrameProcessor(pose)
 while cap.isOpened():
     ret, image = cap.read()
@@ -25,15 +26,22 @@ while cap.isOpened():
     image = cv2.cvtColor(cv2.flip(image, 1), cv2.COLOR_BGR2RGB)         
     image.flags.writeable = False
     try:
-        frameProcessor.processImage(image)
+        frameProcessor.process_image(image)
     except:
         continue
-
+frameProcessor.post_process()
+pause_time_seconds = 2
+for frame in frameProcessor.frames:
+    image = frame.image
     # Draw the hand annotations on the image.
     image.flags.writeable = True
     image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)      
-
-    out.write(image)
+    
+    repeat_count=1
+    if frame.pause:
+        repeat_count = pause_time_seconds*fps
+    for _ in range(repeat_count):
+        out.write(image)
 
 pose.close()
 cap.release()

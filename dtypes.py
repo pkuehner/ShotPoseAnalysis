@@ -2,7 +2,9 @@ from dataclasses import dataclass
 from enum import IntEnum
 from typing import List
 
+
 class LANDMARKERID(IntEnum):
+    NOSE = 0
     SHOULDER_LEFT = 11
     SHOULDER_RIGHT = 12
     ELBOW_LEFT = 13
@@ -22,11 +24,13 @@ class LANDMARKERID(IntEnum):
     ANKLE_LEFT = 27
     ANKLE_RIGHT = 28
 
+
 @dataclass
 class Landmarker:
     id: LANDMARKERID
     x: int
     y: int
+
 
 @dataclass
 class Angle:
@@ -35,8 +39,10 @@ class Angle:
     landmarker3: Landmarker
     angle: float
 
+
 @dataclass
 class Frame:
     image: any
     landmarkers: List[Landmarker]
     angles: List[Angle]
+    pause: bool = False
