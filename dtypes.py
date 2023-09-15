@@ -47,6 +47,7 @@ class Angle:
 @dataclass
 class Frame:
     number: int
+    original_image: any
     image: any
     landmarkers: List[Landmarker]
     angles: List[Angle]

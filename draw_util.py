@@ -20,4 +20,4 @@ def draw_angle(image, angle:Angle):
    
     #Show angles between lines
     cv2.putText(image, str(int(angle.angle)), (angle.landmarker2.x-50, angle.landmarker2.y+50), 
-    cv2.FONT_HERSHEY_PLAIN, 2, (0,0,255), 2)
+    cv2.FONT_HERSHEY_PLAIN, 2, (255,0,0), 2)
